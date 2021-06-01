@@ -8,15 +8,31 @@ export const App = () => {
   const [incompleteTodos, setIncompleteTodos] = useState([]);
   const [completeTodos, setCompleteTodos] = useState([]);
 
+  // 入力フォーム入力時
   const onChangeTodoText = (event) => setTodoText(event.target.value);
+  // 追加ボタン押下時
   const onClickCreateButton = () => {
-    const newTodo = todoText;
-    setIncompleteTodos([...incompleteTodos, newTodo]);
+    setIncompleteTodos([...incompleteTodos, todoText]);
     setTodoText("");
   };
-  const onClickCompleteButton = () => alert("完了ボタン押された");
-  const onClickDeleteButton = () => alert("削除ボタン押された");
-  const onClickBackButton = () => alert("戻すボタンが押された");
+  // 完了ボタン押下時
+  const onClickCompleteButton = (index) => {
+    const completeTodo = incompleteTodos[index];
+    incompleteTodos.splice(index, 1);
+    setCompleteTodos([...completeTodos, completeTodo]);
+  };
+  // 削除ボタン押下時
+  const onClickDeleteButton = (index) => {
+    incompleteTodos.splice(index, 1);
+    setIncompleteTodos([...incompleteTodos]);
+  };
+  // 戻すボタン押下時
+  const onClickBackButton = (index) => {
+    const backTodo = completeTodos[index];
+    completeTodos.splice(index, 1);
+    console.log(`incomp.. ${incompleteTodos}, backto: ${backTodo}`);
+    setIncompleteTodos([...incompleteTodos, backTodo]);
+  };
 
   return (
     <>

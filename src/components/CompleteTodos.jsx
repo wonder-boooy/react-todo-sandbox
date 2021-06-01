@@ -11,7 +11,7 @@ export const CompleteTodos = (props) => {
           return (
             <li key={index}>
               <p>{todo}</p>
-              <button onClick={onClickBackButton}>戻す</button>
+              <button onClick={() => onClickBackButton(index)}>戻す</button>
             </li>
           );
         })}
