@@ -17,21 +17,28 @@ export const App = () => {
   };
   // 完了ボタン押下時
   const onClickCompleteButton = (index) => {
-    const completeTodo = incompleteTodos[index];
-    incompleteTodos.splice(index, 1);
-    setCompleteTodos([...completeTodos, completeTodo]);
+    const newIncompleteTodos = [...incompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+    const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
+
+    setIncompleteTodos(newIncompleteTodos);
+    setCompleteTodos(newCompleteTodos);
   };
   // 削除ボタン押下時
   const onClickDeleteButton = (index) => {
-    incompleteTodos.splice(index, 1);
-    setIncompleteTodos([...incompleteTodos]);
+    const newIncompleteTodos = [...incompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+
+    setIncompleteTodos(newIncompleteTodos);
   };
   // 戻すボタン押下時
   const onClickBackButton = (index) => {
-    const backTodo = completeTodos[index];
-    completeTodos.splice(index, 1);
-    console.log(`incomp.. ${incompleteTodos}, backto: ${backTodo}`);
-    setIncompleteTodos([...incompleteTodos, backTodo]);
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
+
+    setCompleteTodos(newCompleteTodos);
+    setIncompleteTodos(newIncompleteTodos);
   };
 
   return (
