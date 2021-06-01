@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { InputTodo } from "./components/InputTodo";
 
 export const App = () => {
-  return <h1>ご挨拶</h1>;
+  const [todoText, setTodoText] = useState("");
+
+  const onChangeTodoText = (event) => setTodoText(event.target.value);
+
+  return <InputTodo todoText={todoText} onChange={onChangeTodoText} />;
 };
